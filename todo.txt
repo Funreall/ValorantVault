@@ -1,0 +1,25 @@
+[X] Landing Page
+
+[] Skins Page
+
+[] Agents Page
+
+[] Buddies Page
+
+[] Sprays Page
+
+[] Profile Page
+
+[] SignIn/SignUp Page
+
+[x] Header
+    [] Made a underline when hover
+    [] Made a underline which url you are on
+
+[] Footer
+
+[] 404 Page
+
+Others--
+  [] Make full portrait a background to the rightlike his
+  [] General Responsiveness
