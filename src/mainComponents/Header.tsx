@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Header() {
   const [showSkins, setShowSkins] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log(location.pathname);
 
   useEffect(() => {
     console.log("rendered");
@@ -13,6 +16,8 @@ function Header() {
     <div className="header-container">
       <div className="logo-container">
         <img
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/")}
           className="header-logo"
           src="https://res.cloudinary.com/dmdp4huyc/image/upload/v1720526229/yqorckuvwwsg8vczkewg.png"
           alt=""
@@ -40,28 +45,28 @@ function Header() {
             >
               <ul>
                 <li>
-                  <Link to="/">Vandal</Link>
+                  <Link to="/skins/vandal">Vandal</Link>
                 </li>
                 <li>
-                  <Link to="/">Phantom</Link>
+                  <Link to="/skins/phantom">Phantom</Link>
                 </li>
                 <li>
-                  <Link to="/">Operator</Link>
+                  <Link to="/skins/sheriff">Sheriff</Link>
                 </li>
                 <li>
-                  <Link to="/">Spectre</Link>
+                  <Link to="/skins">Others</Link>
                 </li>
               </ul>
             </div>
           </li>
           <li>
-            <Link to="/">Agents</Link>
+            <Link to="/agents">Agents</Link>
           </li>
           <li>
-            <Link to="/">Buddies</Link>
+            <Link to="/buddies">Buddies</Link>
           </li>
           <li>
-            <Link to="/">Sprays</Link>
+            <Link to="/sprays">Sprays</Link>
           </li>
           <li>
             <a onClick={() => setShowProfile((p) => !p)}>

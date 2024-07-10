@@ -11,7 +11,7 @@
   box-sizing: border-box;
 }
 body {
-  background: url(https://res.cloudinary.com/dmdp4huyc/image/upload/v1720520988/wqorhfdnvaxpt01d9zkc.jpg) center / cover no-repeat;
+  background: black;
   min-height: 100vh;
   backdrop-filter: blur(2px);
 }
@@ -56,12 +56,40 @@ body {
 }
 .nav-list li {
   margin: 0 1rem;
+  transition: filter 0.3s;
+}
+.nav-list li:hover {
+  filter: drop-shadow(5px 5px 10px rgba(255, 255, 255, 0.5)) brightness(200%);
+}
+.nav-list li::after {
+  content: "";
+  display: block;
+  opacity: 0;
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  transition: opacity 0.3s;
+}
+.nav-list li:hover::after {
+  opacity: 1;
 }
 .nav-list li a {
   font-family: var(--ff-secondary);
   font-size: 1.25rem;
   color: hsl(0, 0%, 90%);
   text-decoration: none;
+}
+.link-active {
+  filter: drop-shadow(5px 5px 10px rgba(255, 255, 255, 0.5)) brightness(200%);
+}
+.link-active::after {
+  opacity: 1;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  transition: opacity 0.3s;
 }
 .fa-angle-down {
   transition: transform 0.3s;
@@ -84,6 +112,9 @@ body {
 .header-skins-container ul li {
   margin: 0.5rem 0;
 }
+.header-skins-container ul li:hover::after {
+  filter: brightness(100%);
+}
 .show-skins {
   transform: scaleY(1);
   opacity: 1;
@@ -93,7 +124,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 .home-desc {
   font-family: var(--ff-primary);
@@ -115,4 +146,34 @@ body {
 .home-img {
   transform: scale(1.2) rotate(45deg);
   filter: drop-shadow(0px 0px 40px rgba(255, 255, 255, 0.534)) brightness(150%);
+}
+/* Agents Page */
+.agent-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 2rem;
+  gap: 2rem;
+}
+.agent-container {
+  display: flex;
+  flex-direction: column;
+  align-self: center; 
+  transition: transform 0.3s linear;
+}
+.agent-container:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.agent-img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.25rem;
+  filter: drop-shadow(0px 0px 40px rgba(255, 255, 255, 0.534)) brightness(120%);
+}
+.agent-name {
+  font-family: var(--ff-primary);
+  font-size: 1.5rem;
+  color: hsl(0, 0%, 90%);
+  margin: 1rem 0;
+  text-align: center;
 }
