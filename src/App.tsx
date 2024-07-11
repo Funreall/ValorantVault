@@ -9,6 +9,8 @@ import Agents from "./pages/Agents";
 import Profile from "./pages/Profile";
 import Sprays from "./pages/Sprays";
 import SingleAgent from "./mainComponents/SingleAgent";
+import Background from "./mainComponents/Background";
+import { useEffect } from "react";
 
 function App() {
   return (

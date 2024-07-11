@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
 import type { AgentType } from "../myTypes/agentType";
 import Agent from "../mainComponents/Agent";
+import Background from "../mainComponents/Background";
 
 function Agents() {
   const [agents, setAgents] = useState<AgentType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const bodyElement = document.querySelector("body");
+    bodyElement?.classList.add("background-body");
+    return () => {
+      bodyElement?.classList.remove("background-body");
+    };
+  }, []);
+
+  useEffect(() => {
     const getAgents = async () => {
       try {
         const response = await fetch("https://valorant-api.com/v1/agents");
         const data = await response.json();
-        console.log(data);
         let tempAgents: AgentType[] = [];
         data.data.forEach(
           (agent: {
@@ -44,10 +52,15 @@ function Agents() {
   }, []);
 
   return (
-    <div className="agent-gallery">
-      {!loading &&
-        agents.map((agent: AgentType) => <Agent agentData={agent} />)}
-    </div>
+    <>
+      <h1 className="agent-headline">Agents</h1>
+      <div className="agent-gallery">
+        {!loading &&
+          agents.map((agent: AgentType) => (
+            <Agent key={agent.id} agentData={agent} />
+          ))}
+      </div>
+    </>
   );
 }
 

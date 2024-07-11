@@ -11,12 +11,19 @@
   box-sizing: border-box;
 }
 body {
-  background: black;
+  background: url(https://res.cloudinary.com/dmdp4huyc/image/upload/v1720520482/byqn2fgjjhnmjslj3dtr.jpg) center / cover no-repeat;
   min-height: 100vh;
-  backdrop-filter: blur(2px);
+  width: 100vw;
+  overflow-x: hidden;
+  backdrop-filter: blur(3px);
+}
+.background-body {
+  background: url(https://res-console.cloudinary.com/dmdp4huyc/media_explorer_thumbnails/804d7770f7da25257ec274c715f4d9eb/detailed) center / cover no-repeat;
+  background-attachment: fixed;
 }
 #root {
   min-height: 100vh;
+  width: 100vw;
 }
 /* Global */
 .btn-global {
@@ -97,6 +104,13 @@ body {
 .angle-active {
   transform: rotate(180deg);
 }
+.nav-profile {
+  display: flex;
+  align-items: center;
+  color: hsl(0, 0%, 90%);
+  font-family: var(--ff-secondary);
+  font-size: 1.25rem;
+}
 .header-skins-container {
   transform: scaleY(0);
   transform-origin: top;
@@ -124,7 +138,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  height: 90vh;
 }
 .home-desc {
   font-family: var(--ff-primary);
@@ -144,10 +158,22 @@ body {
   margin-bottom: 1rem;
 }
 .home-img {
-  transform: scale(1.2) rotate(45deg);
+  margin-left: -5rem;
+  transform: scale(1.1) rotate(45deg);
   filter: drop-shadow(0px 0px 40px rgba(255, 255, 255, 0.534)) brightness(150%);
 }
 /* Agents Page */
+.agent-headline {
+  color: white;
+  font-family: var(--ff-secondary);
+  font-size: 2.5rem;
+  text-align: center;
+  letter-spacing: 0.25rem;
+  margin-left: 10rem;
+  margin-top: 5rem;
+  width: 10%;
+  border-bottom: 1px solid white;
+}
 .agent-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -176,4 +202,142 @@ body {
   color: hsl(0, 0%, 90%);
   margin: 1rem 0;
   text-align: center;
+}
+/* Single Agent Page */
+.single-agent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  padding: 2rem 2rem;
+}
+.single-agent-left {
+  width: 30%;
+  height: 100%;
+}
+.single-agent-img-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+.single-agent-img {
+  width: 40%;
+  transition: transform 0.3s;
+}
+.single-agent-img:hover {
+  transform: scale(1.1);
+}
+.single-agent-role {
+  color: white;
+  font-family: var(--ff-secondary);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.single-agent-abilities-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.single-agent-abilities-container h1 {
+  color: white;
+  font-family: var(--ff-secondary);
+  margin-bottom: 2rem;
+}
+.single-agent-abilities {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.single-agent-ability {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s;
+}
+.single-agent-ability:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.single-agent-ability p {
+  color: white;
+  text-align: center;
+  font-family: var(--ff-secondary);
+}
+.single-agent-ability-img {
+  width: 50px;
+  height: 50px;
+  margin: 0 1rem;
+  transition: transform 0.3s;
+}
+.single-agent-right {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; 
+  height: 100%;
+}
+.single-agent-headline {
+  display: flex;
+  font-family: var(--ff-secondary);
+  color: white;
+}
+.single-agent-name {
+  margin-right: 1rem;
+  width: 50%;
+}
+.single-agent-headline h1::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 1px;
+  background-color: white;
+  margin-top: 1rem;
+}
+.single-agent-headline p {
+  font-family: var(--ff-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-style: oblique;
+  color: hsl(0, 0%, 90%);
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+  margin-top: 0.5rem;
+  margin-left: 0.25rem;
+}
+.single-agent-description {
+  font-family: var(--ff-secondary);
+  color: hsl(0, 0%, 90%);
+  font-size: 1.25rem;
+}
+.single-agent-description h2 {
+  margin: 1rem 0;
+  margin-top: 0;
+}
+.single-agent-description h2::after {
+  content: "";
+  display: block;
+  width: 15%;
+  height: 1px;
+  background-color: white;
+  margin-top: 1rem;
+}
+.single-agent-description p {
+  max-width: 75%;
+}
+.single-agent-passive h2{
+  font-family: var(--ff-secondary);
+  color: white;
+}
+.single-agent-passive h2::after {
+  content: "";
+  display: block;
+  width: 15%;
+  height: 1px;
+  background-color: white;
+  margin-top: 1rem;
+}
+.single-agent-passive p {
+  color: white;
+  font-family: var(--ff-secondary);
+  font-size: 1.25rem;
+  margin-top: 1rem;
 }

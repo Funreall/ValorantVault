@@ -6,11 +6,6 @@ function Header() {
   const [showProfile, setShowProfile] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location.pathname);
-
-  useEffect(() => {
-    console.log("rendered");
-  });
 
   return (
     <div className="header-container">
@@ -68,44 +63,45 @@ function Header() {
           <li>
             <Link to="/sprays">Sprays</Link>
           </li>
-          <li>
-            <a onClick={() => setShowProfile((p) => !p)}>
-              Profile{" "}
-              <i
-                className={
-                  showProfile
-                    ? "fa-solid fa-angle-down angle-active"
-                    : "fa-solid fa-angle-down"
-                }
-              ></i>
-            </a>
-            <div
-              className={
-                showProfile
-                  ? "header-skins-container show-skins"
-                  : "header-skins-container"
-              }
-            >
-              <ul>
-                <li>
-                  <Link to="/">Skins</Link>
-                </li>
-                <li>
-                  <Link to="/">Agents</Link>
-                </li>
-                <li>
-                  <Link to="/">Buddies</Link>
-                </li>
-                <li>
-                  <Link to="/">Sprays</Link>
-                </li>
-                <li>
-                  <Link to="/">Logout</Link>
-                </li>
-              </ul>
-            </div>
-          </li>
+          <li></li>
         </ul>
+      </div>
+      <div>
+        <a className="nav-profile" onClick={() => setShowProfile((p) => !p)}>
+          Profile{" "}
+          <i
+            className={
+              showProfile
+                ? "fa-solid fa-angle-down angle-active"
+                : "fa-solid fa-angle-down"
+            }
+          ></i>
+        </a>
+        <div
+          className={
+            showProfile
+              ? "header-skins-container show-skins"
+              : "header-skins-container"
+          }
+        >
+          <ul>
+            <li>
+              <Link to="/">Skins</Link>
+            </li>
+            <li>
+              <Link to="/">Agents</Link>
+            </li>
+            <li>
+              <Link to="/">Buddies</Link>
+            </li>
+            <li>
+              <Link to="/">Sprays</Link>
+            </li>
+            <li>
+              <Link to="/">Logout</Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
