@@ -7,12 +7,20 @@ function Header() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  function closeTabs() {
+    setShowProfile(false);
+    setShowSkins(false);
+  }
+
   return (
     <div className="header-container">
       <div className="logo-container">
         <img
           style={{ cursor: "pointer" }}
-          onClick={() => navigate("/")}
+          onClick={() => {
+            navigate("/");
+            closeTabs();
+          }}
           className="header-logo"
           src="https://res.cloudinary.com/dmdp4huyc/image/upload/v1720526229/yqorckuvwwsg8vczkewg.png"
           alt=""
@@ -20,7 +28,7 @@ function Header() {
       </div>
       <div className="header-nav">
         <ul className="nav-list">
-          <li>
+          <li id="skin-order-nav">
             <a onClick={() => setShowSkins((c) => !c)}>
               Skins{" "}
               <i
@@ -33,42 +41,44 @@ function Header() {
             </a>
             <div
               className={
-                showSkins
-                  ? "header-skins-container show-skins"
-                  : "header-skins-container"
+                showSkins ? "header-order-list show-skins" : "header-order-list"
               }
             >
               <ul>
                 <li>
-                  <Link to="/skins/vandal">Vandal</Link>
+                  <Link onClick={() => closeTabs()} to="/skins/collection">
+                    By Collection
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/skins/phantom">Phantom</Link>
-                </li>
-                <li>
-                  <Link to="/skins/sheriff">Sheriff</Link>
-                </li>
-                <li>
-                  <Link to="/skins">Others</Link>
+                  <Link onClick={() => closeTabs()} to="/skins/armory">
+                    By Weapons
+                  </Link>
                 </li>
               </ul>
             </div>
           </li>
           <li>
-            <Link to="/agents">Agents</Link>
+            <Link onClick={() => closeTabs()} to="/agents">
+              Agents
+            </Link>
           </li>
           <li>
-            <Link to="/buddies">Buddies</Link>
+            <Link onClick={() => closeTabs()} to="/buddies">
+              Buddies
+            </Link>
           </li>
           <li>
-            <Link to="/sprays">Sprays</Link>
+            <Link onClick={() => closeTabs()} to="/sprays">
+              Sprays
+            </Link>
           </li>
           <li></li>
         </ul>
       </div>
       <div>
         <a className="nav-profile" onClick={() => setShowProfile((p) => !p)}>
-          Profile{" "}
+          Profile&nbsp;
           <i
             className={
               showProfile
@@ -86,19 +96,29 @@ function Header() {
         >
           <ul>
             <li>
-              <Link to="/">Skins</Link>
+              <Link onClick={() => closeTabs()} to="/">
+                Skins
+              </Link>
             </li>
             <li>
-              <Link to="/">Agents</Link>
+              <Link onClick={() => closeTabs()} to="/">
+                Agents
+              </Link>
             </li>
             <li>
-              <Link to="/">Buddies</Link>
+              <Link onClick={() => closeTabs()} to="/">
+                Buddies
+              </Link>
             </li>
             <li>
-              <Link to="/">Sprays</Link>
+              <Link onClick={() => closeTabs()} to="/">
+                Sprays
+              </Link>
             </li>
             <li>
-              <Link to="/">Logout</Link>
+              <Link onClick={() => closeTabs()} to="/">
+                Logout
+              </Link>
             </li>
           </ul>
         </div>

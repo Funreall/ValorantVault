@@ -15,11 +15,10 @@ body {
   min-height: 100vh;
   width: 100vw;
   overflow-x: hidden;
-  backdrop-filter: blur(3px);
 }
 .background-body {
-  background: url(https://res-console.cloudinary.com/dmdp4huyc/media_explorer_thumbnails/804d7770f7da25257ec274c715f4d9eb/detailed) center / cover no-repeat;
-  background-attachment: fixed;
+  background: url('https://online.pubhtml5.com/dlzng/erpx/files/large/2.jpg?1678131057') center / cover repeat-y;
+  background-repeat: repeat-y;
 }
 #root {
   min-height: 100vh;
@@ -110,6 +109,10 @@ body {
   color: hsl(0, 0%, 90%);
   font-family: var(--ff-secondary);
   font-size: 1.25rem;
+  cursor: pointer;
+}
+.nav-profile:hover {
+  filter: drop-shadow(5px 5px 10px rgba(255, 255, 255, 0.5)) brightness(200%)
 }
 .header-skins-container {
   transform: scaleY(0);
@@ -121,13 +124,63 @@ body {
 .header-skins-container ul {
   list-style: none;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 .header-skins-container ul li {
   margin: 0.5rem 0;
 }
+.header-skins-container ul li:hover {
+  filter: drop-shadow(5px 5px 10px rgba(255, 255, 255, 0.5)) brightness(200%)
+}
+.header-skins-container ul li::after {
+  content: "";
+  display: block;
+  opacity: 0;
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  transition: opacity 0.3s;
+}
 .header-skins-container ul li:hover::after {
-  filter: brightness(100%);
+  opacity: 1;
+  filter: drop-shadow(5px 5px 10px rgba(255, 255, 255, 0.5)) brightness(200%)
+}
+.header-skins-container a {
+  font-family: var(--ff-secondary);
+  font-size: 1.25rem;
+  color: hsl(0, 0%, 90%);
+  text-decoration: none;
+}
+#skin-order-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+#skin-order-nav>a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.header-order-list {
+  transform: scaleY(0);
+  opacity: 0;
+  transform-origin: top;
+  position: absolute;
+  top: 100%;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+.header-order-list ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+}
+.header-order-list ul li {
+  margin: 0.5rem 0;
+  text-align: center;
 }
 .show-skins {
   transform: scaleY(1);
@@ -147,6 +200,7 @@ body {
   text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
+  gap: 3rem;
 }
 .home-desc h2 {
   font-size: 3rem;
@@ -167,12 +221,12 @@ body {
   color: white;
   font-family: var(--ff-secondary);
   font-size: 2.5rem;
+  font-weight: bolder;
   text-align: center;
-  letter-spacing: 0.25rem;
+  text-transform: uppercase;
   margin-left: 10rem;
   margin-top: 5rem;
   width: 10%;
-  border-bottom: 1px solid white;
 }
 .agent-gallery {
   display: grid;
@@ -340,4 +394,22 @@ body {
   font-family: var(--ff-secondary);
   font-size: 1.25rem;
   margin-top: 1rem;
+}
+/* Armory Page */
+.armory-container {
+  padding: 5rem;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+.weapon-container {
+  padding: 0.5rem;
+  border: 2px solid black;
+  color: white;
+  background-color: white;
+}
+.weapon-img {
+  width: 100%;
+  height: 150px;
+  filter: drop-shadow(10px 30px 10px rgba(0, 0, 0, 0.5));
 }

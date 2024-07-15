@@ -6,7 +6,7 @@ function Home() {
       <div className="home-desc">
         <h2>Welcome to ValorantVault</h2>
         <p>Explore your favorite skins, gun buddies right now!</p>
-        <Button text="Explore !" isArrow={true} />
+        <Button text="Let's Go!" />
       </div>
       <div></div>
       <img
