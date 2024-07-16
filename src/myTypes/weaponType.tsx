@@ -4,3 +4,8 @@ export type WeaponType = {
   displayIcon: string;
   shopData: { categoryText: string };
 };
+
+export type CollectionsType = {
+  colName: string;
+  uuids: string[];
+};
