@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
+import type { SkinType } from "../myTypes/collectionsType";
 
 function WeaponSkins() {
   const [loaded, setLoaded] = useState(false);
-  const [skins, setSkins] = useState([]);
+  const [skins, setSkins] = useState<SkinType[]>([]);
   const query = useParams();
   const [searchParams] = useSearchParams();
   const weaponName = query.weaponName;
@@ -16,8 +17,8 @@ function WeaponSkins() {
           `https://valorant-api.com/v1/weapons/${id}`
         );
         const data = await response.json();
-        let tempSkins = [];
-        data.data.skins.forEach((skin) => {
+        let tempSkins: SkinType[] = [];
+        data.data.skins.forEach((skin: SkinType) => {
           tempSkins.push(skin);
         });
         setSkins(tempSkins);

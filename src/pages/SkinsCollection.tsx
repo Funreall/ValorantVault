@@ -1,67 +1,93 @@
 import { useEffect, useState } from "react";
-import type { CollectionsType } from "../myTypes/weaponType";
+import type { CollectionType, SkinType } from "../myTypes/collectionsType";
+import CollectionRow from "../mainComponents/CollectionRow";
 
 function SkinsCollection() {
   const [loaded, setLoaded] = useState(false);
 
-  const [collections, setCollections] = useState<CollectionsType[]>([]);
-  type SkinType = {
-    uuid: string;
-    assetPath: string;
-    displayName: string;
-  };
+  const [collections, setCollections] = useState<CollectionType[]>([]);
+
   useEffect(() => {
     const getSkinsByCollection = async () => {
       const response = await fetch("https://valorant-api.com/v1/weapons/skins");
       const data = await response.json();
-      let activeCollections: CollectionsType[] = [];
-
+      // Setting up data
+      // Inıtializing collections
+      const tempCollections: CollectionType[] = [];
+      // Looping through skins
       data.data.forEach((skin: SkinType) => {
-        if (skin.assetPath.split("/").length < 1) return;
-        if (skin.assetPath === "Random Favorite Skin") return;
-        if (skin.assetPath.split("/")[3] === "Melee") {
-          const collection = skin.assetPath.split("/")[4];
-          if (
-            !activeCollections.find(
-              (col) => col.colName.toLowerCase() === collection.toLowerCase()
-            )
-          ) {
-            activeCollections.push({ colName: collection, uuids: [] });
+        // Getting the skin's details
+        const uuid = skin.uuid;
+        const displayIcon = skin.displayIcon;
+        const displayName = skin.displayName;
+        const chromas = skin.chromas;
+        const levels = skin.levels;
+        const assetPath = skin.assetPath;
+        let colName = "";
+        // Getting the skin's category
+        let tempSkin: SkinType = {
+          uuid: uuid,
+          displayName: displayName,
+          displayIcon: displayIcon,
+          assetPath: assetPath,
+          chromas: chromas,
+          levels: levels,
+        };
+
+        if (assetPath) {
+          if (assetPath.split("/")[3] === "Melee") {
+            colName = assetPath.split("/")[4];
+          } else {
+            colName = assetPath.split("/")[6];
           }
-          activeCollections.forEach((col) => {
-            if (col.colName === collection) {
-              col.uuids.push(skin.uuid);
-            }
-          });
+        }
+
+        if (skin.displayName.toLowerCase() === "random favorite skin") {
+          return;
+        }
+        if (skin.displayName.toLowerCase().includes("standard")) {
+          return;
+        }
+
+        let tempCol: CollectionType;
+        // Checking if the collection is already in the collections array
+        const collectionIndex = tempCollections.findIndex(
+          (col) => col.colName.toLowerCase() === colName.toLowerCase()
+        );
+
+        // If the collection is not in the collections array
+        if (collectionIndex === -1) {
+          tempCol = {
+            colName: colName,
+            skins: [],
+          };
+          tempCol.skins.push(tempSkin);
+          tempCollections.push(tempCol);
         } else {
-          const collection = skin.assetPath.split("/")[6];
-          if (!skin) console.log("No skin found");
-          if (
-            !activeCollections.find(
-              (col) => col.colName.toLowerCase() === collection.toLowerCase()
-            )
-          ) {
-            activeCollections.push({ colName: collection, uuids: [] });
-          }
-          activeCollections.forEach((col) => {
-            if (col.colName === collection) {
-              col.uuids.push(skin.uuid);
-            }
-          });
+          tempCollections[collectionIndex].skins.push(tempSkin);
         }
       });
-      setCollections(activeCollections);
+      setCollections(tempCollections);
       setLoaded(true);
+      // Writing back to original states
     };
     getSkinsByCollection();
-  });
+  }, []);
 
   return (
     <>
       {!loaded ? (
         <div>Loading...</div>
       ) : (
-        <div>{/* {TODO SEND A COMPONENT DETAILS} */}</div>
+        <div className="collection-container">
+          {collections.map((col, index) => (
+            <CollectionRow
+              key={index}
+              colName={col.colName}
+              skins={col.skins}
+            />
+          ))}
+        </div>
       )}
     </>
   );

@@ -410,6 +410,44 @@ body {
 }
 .weapon-img {
   width: 100%;
-  height: 150px;
+  height: 200px;
   filter: drop-shadow(10px 30px 10px rgba(0, 0, 0, 0.5));
+}
+/* Collections Page */
+.collection-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.collections-row {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  border: 1px solid white;
+}
+.collections-row img {
+  width: 100%;
+  height: auto;
+}
+.col-name {
+  color: white;
+  font-family: var(--ff-secondary);
+}
+.col-skins {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  list-style-type: none;
+}
+.col-skins li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.3s;
+  z-index: 99999;
+}
+.col-skins li:hover {
+  transform: scale(1.3);
 }
